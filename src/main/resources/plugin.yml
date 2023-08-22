@@ -1,0 +1,9 @@
+name: SkyblockCore
+main: me.verni.SkyblockCorePlugin
+author: Verni
+api-version: '1.20'
+version: 1.0.0
+commands:
+  pomoc:
+  cc:
+  core:
