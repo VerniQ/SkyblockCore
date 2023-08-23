@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group 'me.verni'
@@ -24,6 +25,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT'
-    implementation("com.iridium:IridiumColorAPI:1.0.6")
-    implementation("com.iridium:IridiumSkyblock:4.0.5")
+    compileOnly("com.iridium:IridiumColorAPI:1.0.6")
+    compileOnly("com.iridium:IridiumSkyblock:4.0.5")
+    compileOnly 'net.luckperms:api:5.4'
 }

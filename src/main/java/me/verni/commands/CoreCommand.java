@@ -25,6 +25,13 @@ public class CoreCommand implements CommandExecutor {
             } else {
                 ChatUtil.color("&cNie posiadasz uprawnień!");
             }
+            if (args.length >= 1){
+                switch (args[0]){
+                    case "reload":
+                        SkyblockCoreConfig.reload();
+                        return true;
+                }
+            }
 
 
         return false;
