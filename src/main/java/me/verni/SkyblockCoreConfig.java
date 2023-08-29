@@ -13,7 +13,7 @@ public class SkyblockCoreConfig{
     private static FileConfiguration customFile;
 
     public static void setup(){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("SkyblockCore").getDataFolder(), "messages.syml");
+        file = new File(Bukkit.getServer().getPluginManager().getPlugin("SkyblockCore").getDataFolder(), "messages.yml");
         if(!file.exists()){
             try{
                 file.createNewFile();
