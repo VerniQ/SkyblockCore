@@ -28,6 +28,15 @@ public class SkyblockCorePlugin extends JavaPlugin {
         ArrayList<String> help = new ArrayList<String>();
         help.add("&cThis is default message");
 
+        ArrayList<String> helpvip = new ArrayList<String>();
+        helpvip.add("&cThis is default message");
+
+        ArrayList<String> helpsvip = new ArrayList<String>();
+        helpsvip.add("&cThis is default message");
+
+        ArrayList<String> helpskygod = new ArrayList<String>();
+        helpskygod.add("&cThis is default message");
+
         ArrayList<String> blacklist = new ArrayList<>();
         blacklist.add("blocked word");
 
@@ -41,6 +50,9 @@ public class SkyblockCorePlugin extends JavaPlugin {
 
         SkyblockCoreConfig.setup();
         SkyblockCoreConfig.get().addDefault("HelpCommand", help);
+        SkyblockCoreConfig.get().addDefault("HelpCommandVip", helpvip);
+        SkyblockCoreConfig.get().addDefault("HelpCommandSvip", helpsvip);
+        SkyblockCoreConfig.get().addDefault("HelpCommandSkygod", helpskygod);
         SkyblockCoreConfig.get().addDefault("prefix", "&#DAF7A6ᴅᴏᴜʙʟᴇᴄʀᴀғᴛ");
         SkyblockCoreConfig.get().addDefault("chaton", "&7Chat został &awłączony &7przez: &e%player%");
         SkyblockCoreConfig.get().addDefault("chatoff", "&7Chat został &cwyłączony &7przez: &e%player%");
@@ -59,6 +71,9 @@ public class SkyblockCorePlugin extends JavaPlugin {
         this.getCommand("core").setExecutor(new CoreCommand());
         this.getCommand("a").setExecutor(new AdminChatCommand());
         this.getCommand("chat").setExecutor(new ChatManagerCommand());
+        this.getCommand("vip").setExecutor(new VipCommand());
+        this.getCommand("svip").setExecutor(new SvipCommand());
+        this.getCommand("skygod").setExecutor(new SkygodCommand());
 
 
         getServer().getPluginManager().registerEvents(new CensorListener(this), this);
