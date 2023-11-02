@@ -17,7 +17,7 @@ public class VipCommand implements CommandExecutor {
         Player p = (Player) sender;
         ArrayList<String> temp = (ArrayList<String>) SkyblockCoreConfig.get().getStringList("HelpCommandVip");
         for (int i=0; i<temp.size(); i++){
-            p.sendMessage(ChatUtil.color(temp.get(i)));
+            p.sendMessage(ChatUtil.color(temp.get(i).replaceAll("%player%", p.getName())));
         }
         return false;
     }

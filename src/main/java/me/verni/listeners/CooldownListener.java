@@ -25,7 +25,7 @@ public class CooldownListener implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         final Player p = e.getPlayer();
-        if (SkyblockCorePlugin.ChatStatus ==false) return;
+        if (!SkyblockCorePlugin.ChatStatus) return;
         if (!p.hasPermission("skyblock.cooldown")) {
             if (this.spam.containsKey(p)) {
                 if (this.spam.get(p) > System.currentTimeMillis()) {
