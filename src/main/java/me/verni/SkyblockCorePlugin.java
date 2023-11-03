@@ -1,6 +1,7 @@
 package me.verni;
 
 import me.verni.commands.*;
+import me.verni.events.ServerPingEvent;
 import me.verni.events.VoidTeleportEvent;
 import me.verni.listeners.CensorListener;
 import me.verni.listeners.ChatStatusListener;
@@ -50,6 +51,7 @@ public class SkyblockCorePlugin extends JavaPlugin {
         config.addDefault("Censored Words", blacklist);
         config.addDefault("chatcooldown", 3);
         config.addDefault("automsgcooldown", 45);
+        config.addDefault("automsgstatus", false);
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -73,6 +75,7 @@ public class SkyblockCorePlugin extends JavaPlugin {
         SkyblockCoreConfig.get().addDefault("discordurl", "unknown discord url");
         SkyblockCoreConfig.get().addDefault("wwwurl", "unknown www url");
         SkyblockCoreConfig.get().addDefault("itemshopurl", "unknown itemshop url");
+        SkyblockCoreConfig.get().addDefault("motd", "&cDefault Motd");
         SkyblockCoreConfig.get().options().copyDefaults(true);
         SkyblockCoreConfig.save();
 
@@ -87,13 +90,15 @@ public class SkyblockCorePlugin extends JavaPlugin {
         this.getCommand("linki").setExecutor(new LinkCommand());
 
         new AutoMessageSystem(this);
-        AutoMessageSystem.start();
+        if(config.getBoolean("automsgstatus")) AutoMessageSystem.start();
+
 
 
         getServer().getPluginManager().registerEvents(new CensorListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatStatusListener(this), this);
         getServer().getPluginManager().registerEvents(new CooldownListener(this), this);
         getServer().getPluginManager().registerEvents(new VoidTeleportEvent(this), this);
+        getServer().getPluginManager().registerEvents(new ServerPingEvent(this), this);
 
 
 
