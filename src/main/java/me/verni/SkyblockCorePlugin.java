@@ -5,6 +5,7 @@ import me.verni.events.VoidTeleportEvent;
 import me.verni.listeners.CensorListener;
 import me.verni.listeners.ChatStatusListener;
 import me.verni.listeners.CooldownListener;
+import me.verni.systems.AutoMessageSystem;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,10 +42,14 @@ public class SkyblockCorePlugin extends JavaPlugin {
         ArrayList<String> blacklist = new ArrayList<>();
         blacklist.add("blocked word");
 
+        ArrayList<String> automsg = new ArrayList<>();
+        automsg.add("&cDefault automsg");
+
 
         config.addDefault("ClearInventoryOnIslandDelete", true);
         config.addDefault("Censored Words", blacklist);
         config.addDefault("chatcooldown", 3);
+        config.addDefault("automsgcooldown", 45);
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -54,6 +59,7 @@ public class SkyblockCorePlugin extends JavaPlugin {
         SkyblockCoreConfig.get().addDefault("HelpCommandVip", helpvip);
         SkyblockCoreConfig.get().addDefault("HelpCommandSvip", helpsvip);
         SkyblockCoreConfig.get().addDefault("HelpCommandSkygod", helpskygod);
+        SkyblockCoreConfig.get().addDefault("AutoMessage", automsg);
         SkyblockCoreConfig.get().addDefault("prefix", "&#DAF7A6ᴅᴏᴜʙʟᴇᴄʀᴀғᴛ");
         SkyblockCoreConfig.get().addDefault("chaton", "&7Chat został &awłączony &7przez: &e%player%");
         SkyblockCoreConfig.get().addDefault("chatoff", "&7Chat został &cwyłączony &7przez: &e%player%");
@@ -79,6 +85,9 @@ public class SkyblockCorePlugin extends JavaPlugin {
         this.getCommand("svip").setExecutor(new SvipCommand());
         this.getCommand("skygod").setExecutor(new SkygodCommand());
         this.getCommand("linki").setExecutor(new LinkCommand());
+
+        new AutoMessageSystem(this);
+        AutoMessageSystem.start();
 
 
         getServer().getPluginManager().registerEvents(new CensorListener(this), this);
