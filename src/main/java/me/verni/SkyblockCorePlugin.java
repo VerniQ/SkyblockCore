@@ -1,6 +1,7 @@
 package me.verni;
 
 import me.verni.commands.*;
+import me.verni.events.VoidTeleportEvent;
 import me.verni.listeners.CensorListener;
 import me.verni.listeners.ChatStatusListener;
 import me.verni.listeners.CooldownListener;
@@ -63,6 +64,9 @@ public class SkyblockCorePlugin extends JavaPlugin {
         SkyblockCoreConfig.get().addDefault("isdisabled", "&cChat jest już wyłączony!");
         SkyblockCoreConfig.get().addDefault("noperms", "&cNie posiadasz uprawnień!");
         SkyblockCoreConfig.get().addDefault("censor", "***");
+        SkyblockCoreConfig.get().addDefault("discordurl", "unknown discord url");
+        SkyblockCoreConfig.get().addDefault("wwwurl", "unknown www url");
+        SkyblockCoreConfig.get().addDefault("itemshopurl", "unknown itemshop url");
         SkyblockCoreConfig.get().options().copyDefaults(true);
         SkyblockCoreConfig.save();
 
@@ -74,11 +78,13 @@ public class SkyblockCorePlugin extends JavaPlugin {
         this.getCommand("vip").setExecutor(new VipCommand());
         this.getCommand("svip").setExecutor(new SvipCommand());
         this.getCommand("skygod").setExecutor(new SkygodCommand());
+        this.getCommand("linki").setExecutor(new LinkCommand());
 
 
         getServer().getPluginManager().registerEvents(new CensorListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatStatusListener(this), this);
         getServer().getPluginManager().registerEvents(new CooldownListener(this), this);
+        getServer().getPluginManager().registerEvents(new VoidTeleportEvent(this), this);
 
 
 
