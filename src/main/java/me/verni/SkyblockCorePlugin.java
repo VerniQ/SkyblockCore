@@ -6,11 +6,9 @@ import me.verni.events.VoidTeleportEvent;
 import me.verni.listeners.CensorListener;
 import me.verni.listeners.ChatStatusListener;
 import me.verni.listeners.CooldownListener;
+import me.verni.listeners.ShopListener;
 import me.verni.systems.AutoMessageSystem;
-import net.luckperms.api.LuckPerms;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -28,16 +26,16 @@ public class SkyblockCorePlugin extends JavaPlugin {
 
 
 
-        ArrayList<String> help = new ArrayList<String>();
+        ArrayList<String> help = new ArrayList<>();
         help.add("&cThis is default message");
 
-        ArrayList<String> helpvip = new ArrayList<String>();
+        ArrayList<String> helpvip = new ArrayList<>();
         helpvip.add("&cThis is default message");
 
-        ArrayList<String> helpsvip = new ArrayList<String>();
+        ArrayList<String> helpsvip = new ArrayList<>();
         helpsvip.add("&cThis is default message");
 
-        ArrayList<String> helpskygod = new ArrayList<String>();
+        ArrayList<String> helpskygod = new ArrayList<>();
         helpskygod.add("&cThis is default message");
 
         ArrayList<String> blacklist = new ArrayList<>();
@@ -99,6 +97,7 @@ public class SkyblockCorePlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CooldownListener(this), this);
         getServer().getPluginManager().registerEvents(new VoidTeleportEvent(this), this);
         getServer().getPluginManager().registerEvents(new ServerPingEvent(this), this);
+        getServer().getPluginManager().registerEvents(new ShopListener(this), this);
 
 
 
